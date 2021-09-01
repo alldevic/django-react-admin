@@ -1,4 +1,4 @@
-# from django.contrib import admin
+from django.contrib import admin
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
@@ -12,15 +12,16 @@ from rest_framework_simplejwt.views import (
 )
 import debug_toolbar
 from rest_framework.authtoken.views import ObtainAuthToken
-
+from rest_framework.authtoken.models import TokenProxy
 from django.contrib.auth.models import Group, User
 
 api_admin.site.register(Group)
 api_admin.site.register(User)
+api_admin.site.register(TokenProxy)
 
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     # Debug Toolbar
     path('__debug__/',
          include(debug_toolbar.urls)),
