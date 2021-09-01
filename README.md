@@ -1,6 +1,6 @@
 # Django with react-admin
 
-Project for test react-admin integration with DJANO, DRF, Guardian, JWT auth
+Project for test react-admin integration with Django, DRF, Guardian, JWT auth
 
 ## Using
 
