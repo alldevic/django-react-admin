@@ -19,6 +19,7 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'rest_framework',
+    "rest_framework.authtoken",
     'django_filters',
     'guardian',
     'django_restful_admin',
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     # Local apps
+    'utils',
 ]
 
 MIDDLEWARE = [
@@ -100,10 +102,17 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_PAGINATION_CLASS':
+        'utils.pagination.PageNumberWithPageSizePagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.OrderingFilter',
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication',
     ),
 }
 
@@ -148,6 +157,8 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'REST Admin',
     'DESCRIPTION': 'test app for replace Django Admin via react-admin.',
     'VERSION': '1.0.0',
+    'COMPONENT_SPLIT_REQUEST': True,
+
     # available SwaggerUI configuration parameters
     # https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/
     "SWAGGER_UI_SETTINGS": {

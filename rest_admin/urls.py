@@ -11,6 +11,8 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 import debug_toolbar
+from rest_framework.authtoken.views import ObtainAuthToken
+
 from django.contrib.auth.models import Group, User
 
 api_admin.site.register(Group)
@@ -41,4 +43,8 @@ urlpatterns = [
          TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/',
          TokenRefreshView.as_view(), name='token_refresh'),
+
+    # DRF Token Auth
+    path("api/token-auth/",
+         ObtainAuthToken.as_view(), name='token_auth'),
 ]
