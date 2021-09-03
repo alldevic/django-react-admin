@@ -26,12 +26,16 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'debug_toolbar',
     'rest_framework_simplejwt',
+    "corsheaders",
 
     # Local apps
     'utils',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
