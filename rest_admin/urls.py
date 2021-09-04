@@ -1,6 +1,6 @@
 from django.contrib import admin
 from drf_spectacular.views import (
-    SpectacularAPIView,
+    SpectacularJSONAPIView,
     SpectacularRedocView,
     SpectacularSwaggerView
 )
@@ -11,14 +11,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 import debug_toolbar
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import TokenProxy
+
 from django.contrib.auth.models import Group, User
 
 api_admin.site.register(Group)
 api_admin.site.register(User)
-api_admin.site.register(TokenProxy)
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,8 +27,8 @@ urlpatterns = [
          api_admin.site.urls, name='admin'),
 
     # OpenAPI schema
-    path('api/schema/',
-         SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema.json',
+         SpectacularJSONAPIView.as_view(), name='schema'),
 
     # Optional UI:
     path('api/schema/swagger-ui/',
@@ -44,8 +41,4 @@ urlpatterns = [
          TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/',
          TokenRefreshView.as_view(), name='token_refresh'),
-
-    # DRF Token Auth
-    path("api/token-auth/",
-         ObtainAuthToken.as_view(), name='token_auth'),
 ]

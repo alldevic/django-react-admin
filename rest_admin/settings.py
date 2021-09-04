@@ -19,7 +19,6 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'rest_framework',
-    "rest_framework.authtoken",
     'django_filters',
     'guardian',
     'django_restful_admin',
@@ -115,7 +114,6 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
@@ -162,12 +160,12 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'test app for replace Django Admin via react-admin.',
     'VERSION': '1.0.0',
     'COMPONENT_SPLIT_REQUEST': True,
-
+    'SERVE_PUBLIC': False,
+    'SERVE_INCLUDE_SCHEMA': False,
     # available SwaggerUI configuration parameters
     # https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
-        "persistAuthorization": True,
         "displayOperationId": True,
     },
 }
