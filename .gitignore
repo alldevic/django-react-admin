@@ -138,6 +138,7 @@ dmypy.json
 cython_debug/
  
 /**/static/*
+!/frontend/**/static/*
 !**/.gitkeep
 
 .vscode
