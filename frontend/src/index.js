@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import DebugFrame from './DebugFrame';
 
 ReactDOM.render(
+
   <React.StrictMode>
+    <DebugFrame />
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  ,
   document.getElementById('root')
 );
 
