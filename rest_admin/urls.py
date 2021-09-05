@@ -13,6 +13,7 @@ from rest_framework_simplejwt.views import (
 import debug_toolbar
 
 from django.contrib.auth.models import Group, User
+from utils.views import debug
 
 api_admin.site.register(Group)
 api_admin.site.register(User)
@@ -22,6 +23,9 @@ urlpatterns = [
     # Debug Toolbar
     path('__debug__/',
          include(debug_toolbar.urls)),
+    path('debug/',
+         debug, name='debug'),
+
     # REST Admin
     path('api/admin/',
          api_admin.site.urls, name='admin'),
