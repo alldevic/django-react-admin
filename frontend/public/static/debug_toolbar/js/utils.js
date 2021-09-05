@@ -94,6 +94,7 @@ function ajax(url, init) {
 function ajaxForm(element) {
     const form = element.closest("form");
     const url = new URL(form.action.replace("localhost:3000", "localhost:8000"));
+    // const url = new URL(form.action);
     const formData = new FormData(form);
     for (const [name, value] of formData.entries()) {
         url.searchParams.append(name, value);

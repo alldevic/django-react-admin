@@ -90,9 +90,7 @@ const djdt = {
 
             if (this.tagName === "BUTTON") {
                 const form = this.closest("form");
-                url = this.formAction;
-                console.log("qwewqeqweqwe")
-                console.log(this.formAction)
+                url = this.formAction.replace("localhost:3000", "localhost:8000");
                 ajax_data.method = form.method.toUpperCase();
                 ajax_data.body = new FormData(form);
             } else if (this.tagName === "A") {
