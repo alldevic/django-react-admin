@@ -2,22 +2,11 @@ import * as React from "react";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Title, useAuthenticated } from 'react-admin';
-import SwaggerUI from "swagger-ui-react"
+import SwaggerUI, { Layout } from "swagger-ui-react"
 import "swagger-ui-react/swagger-ui.css"
 import PropTypes from "prop-types"
 
-const requestInterceptor = (req) => (
-    {
-        ...req,
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('access')}`
-        }
-    }
-);
-
-
-class CustomLayout extends React.Component {
-
+class CustomLayout extends React.Component<Layout> {
     static propTypes = {
         errSelectors: PropTypes.object.isRequired,
         errActions: PropTypes.object.isRequired,
@@ -116,10 +105,20 @@ const ApiUI = () => {
             <CardContent>
                 <SwaggerUI
                     url="http://localhost:8000/api/schema.json"
-                    requestInterceptor={requestInterceptor}
+                    requestInterceptor={request => {
+                        request = {
+                            ...request,
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem('access')}`
+                            }
+                        }
+                        console.log(request);
+                        return request;
+                    }}
                     deepLinking={true}
                     displayOperationId={true}
-                    plugins={[CustomLayoutPlugin]}
+                    filter={true}
+                    plugins={[CustomLayoutPlugin()]}
                     layout="CustomLayout"
                 />
             </CardContent>
