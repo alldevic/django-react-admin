@@ -168,6 +168,7 @@ DEBUG_TOOLBAR_PANELS = [
 
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": lambda request: not request.is_ajax(),
+    'INTERCEPT_REDIRECTS': False,
     'SQL_WARNING_THRESHOLD': 100,
     'DISABLE_PANELS': [],
 }
